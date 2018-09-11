@@ -16,6 +16,22 @@ public class Talent {
     private double budget;
 
 
+    public List<Expenditure> getExpenditures() {
+        return expenditures;
+    }
+
+    public void setExpenditures(List<Expenditure> expenditures) {
+        this.expenditures = expenditures;
+    }
+
+    public TalentTeam getTalentTeam() {
+        return talentTeam;
+    }
+
+    public void setTalentTeam(TalentTeam talentTeam) {
+        this.talentTeam = talentTeam;
+    }
+
     @OneToMany
     private List<Expenditure> expenditures = new ArrayList<>();
 
