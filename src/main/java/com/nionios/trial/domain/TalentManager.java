@@ -32,5 +32,11 @@ public class TalentManager {
         this.name = name;
     }
 
+    public List<TalentTeam> getTalentTeams() {
+        return talentTeams;
+    }
 
+    public void setTalentTeams(List<TalentTeam> talentTeams) {
+        this.talentTeams = talentTeams;
+    }
 }

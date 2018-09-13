@@ -17,7 +17,10 @@ public class Expenditure {
     private String goal_description;
     private double cost;
     private LocalDate date;
-    //private enum State{APPROVED, REJECTED, INPROGRESS, CLOSED}
+    private int state;
+
+    //State{APPROVED, REJECTED, INPROGRESS, CLOSED}
+
 
     public long getId() {
         return id;
@@ -66,4 +69,13 @@ public class Expenditure {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
 }
