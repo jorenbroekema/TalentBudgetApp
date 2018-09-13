@@ -45,41 +45,13 @@ public class TalentManagerEndpoint {
         return Response.noContent().build();
     }
 
-    /*@GET
+    @GET
     @Path(value = "{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTalent(@PathParam("id") long id){
         System.out.println(id);
-
-        Expenditure bookJava = new Expenditure();
-        bookJava.setName("Java Book");
-        bookJava.setDescription("This is a book for learning Java");
-        talentUserService.addExpenditure(bookJava);
-
-        Expenditure course2 = new Expenditure();
-        course2.setName("Java course");
-        course2.setDescription("This is a course to learn Java");
-        talentUserService.addExpenditure(course2);
-
-        ArrayList<Expenditure> expenditures = new ArrayList<>();
-        expenditures.add(bookJava);
-        expenditures.add(course2);
-
-        //  TalentTeam tt = new TalentTeam();
-        //  tt.setTeamname("TEP12");
-
-        Talent talent = new Talent();
-        talent.setName("Frits");
-        talent.setBudget(1500);
-        //talent.setTalentTeam(tt);
-        talent.setExpenditures(expenditures);
-
-        talentManagerService.addTalent(talent);
-
-
         Talent result = talentService.displayTalent(id);
         return Response.ok(result).build();
     }
 
-*/
 }

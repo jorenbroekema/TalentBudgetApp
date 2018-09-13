@@ -16,7 +16,7 @@ public class Talent {
     private double budget;
 
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Expenditure> expenditures = new ArrayList<>();
 
 
