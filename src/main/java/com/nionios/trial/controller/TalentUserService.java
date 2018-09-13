@@ -18,11 +18,11 @@ public class TalentUserService {
     @Autowired
     TalentRepository talentRepository;
 
-    public void addExpenditure(Expenditure expenditure){
+    public void saveExpenditure(Expenditure expenditure){
         expenditureRepository.save(expenditure);
     }
 
-    public void removeExpenditure(Expenditure expenditure){
+    public void deleteExpenditure(Expenditure expenditure){
         expenditureRepository.delete(expenditure);
     }
 

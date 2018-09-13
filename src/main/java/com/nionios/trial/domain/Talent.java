@@ -1,6 +1,7 @@
 package com.nionios.trial.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.ArrayList;

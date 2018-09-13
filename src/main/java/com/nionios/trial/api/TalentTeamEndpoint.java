@@ -3,8 +3,6 @@ package com.nionios.trial.api;
 import com.nionios.trial.controller.*;
 import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
-import com.nionios.trial.domain.TalentManager;
-import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,12 +38,12 @@ public class TalentTeamEndpoint {
         Expenditure bookJava = new Expenditure();
         bookJava.setName("Java Book");
         bookJava.setDescription("This is a book for learning Java");
-        talentUserService.addExpenditure(bookJava);
+        talentUserService.saveExpenditure(bookJava);
 
         Expenditure course2 = new Expenditure();
         course2.setName("Java course");
         course2.setDescription("This is a course to learn Java");
-        talentUserService.addExpenditure(course2);
+        talentUserService.saveExpenditure(course2);
 
         ArrayList<Expenditure> expenditures = new ArrayList<>();
         expenditures.add(bookJava);

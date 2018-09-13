@@ -1,9 +1,8 @@
 package com.nionios.trial.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,10 +16,9 @@ public class Expenditure {
     private String goal_description;
     private double cost;
     private LocalDate date;
-    private int state;
+    private int state = 2;
 
     //State{APPROVED, REJECTED, INPROGRESS, CLOSED}
-
 
     public long getId() {
         return id;

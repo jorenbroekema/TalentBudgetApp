@@ -17,7 +17,7 @@ public class TalentService {
         return talentRepository.findById(id).get();
     }
 
-    public Iterable<Expenditure> displayExpeditures(Long id){
+    public Iterable<Expenditure> displayAllExpenditures(Long id){
         return talentRepository.findById(id).get().getExpenditures();
     }
 
