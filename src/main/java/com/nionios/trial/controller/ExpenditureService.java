@@ -36,8 +36,8 @@ public class ExpenditureService {
         return expenditureRepository.findById(id).get();
     }
 
-
-
-
-
+    public Iterable<Expenditure> findAllExpenditures() {
+        Iterable<Expenditure> result = expenditureRepository.findAll();
+        return result;
+    }
 }

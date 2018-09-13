@@ -1,6 +1,7 @@
 package com.nionios.trial.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Talent {
     private double budget;
 
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Expenditure> expenditures = new ArrayList<>();
 
 
