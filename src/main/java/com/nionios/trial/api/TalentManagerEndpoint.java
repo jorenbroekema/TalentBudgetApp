@@ -45,7 +45,7 @@ public class TalentManagerEndpoint {
         return Response.noContent().build();
     }
 
-    @GET
+    /*@GET
     @Path(value = "{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTalent(@PathParam("id") long id){
@@ -81,5 +81,5 @@ public class TalentManagerEndpoint {
         return Response.ok(result).build();
     }
 
-
+*/
 }
