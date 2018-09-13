@@ -18,10 +18,11 @@ public class TalentUserService {
     @Autowired
     TalentRepository talentRepository;
 
-    public void saveExpenditure(Expenditure expenditure){
-        expenditureRepository.save(expenditure);
+    public Expenditure saveExpenditure(Expenditure expenditure){
+        return expenditureRepository.save(expenditure);
     }
 
+    // TODO: Get rid of voids. There is always something to return, which helps with troubleshooting on the frontend :)!
     public void deleteExpenditure(Expenditure expenditure){
         expenditureRepository.delete(expenditure);
     }
