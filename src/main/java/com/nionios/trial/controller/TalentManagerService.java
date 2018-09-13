@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Component
 @Transactional
 public class TalentManagerService {
@@ -26,12 +28,17 @@ public class TalentManagerService {
         return talentManagerRepository.findById(id).get().getTalentTeams();
     }
 
-    public void addTalent(Talent talent){
-        talentRepository.save(talent);
+    public Talent addTalent(Talent talent){ return talentRepository.save(talent); }
+
+    public void removeTalent(long number){
+        Optional<Talent> t = talentRepository.findById(number);
+        System.out.println(t);
+        talentRepository.delete(t.get());
     }
 
-    public void addTalentTeam(TalentTeam tt){
-        talentTeamRepository.save(tt);
+
+    public TalentTeam addTalentTeam(TalentTeam tt){
+        return talentTeamRepository.save(tt);
     }
 
     public void approveExpenditure(Long id){
