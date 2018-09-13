@@ -54,12 +54,12 @@ public class TalentManagerEndpoint {
         Expenditure bookJava = new Expenditure();
         bookJava.setName("Java Book");
         bookJava.setDescription("This is a book for learning Java");
-        talentUserService.addExpenditure(bookJava);
+        talentUserService.saveExpenditure(bookJava);
 
         Expenditure course2 = new Expenditure();
         course2.setName("Java course");
         course2.setDescription("This is a course to learn Java");
-        talentUserService.addExpenditure(course2);
+        talentUserService.saveExpenditure(course2);
 
         ArrayList<Expenditure> expenditures = new ArrayList<>();
         expenditures.add(bookJava);
