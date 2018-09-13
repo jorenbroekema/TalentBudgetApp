@@ -21,4 +21,8 @@ public class TalentTeamService {
     public Iterable<Talent> displayAllTalents(){
         return talentRepository.findAll();
     }
+
+    public TalentTeam displayTeam(Long id){
+        return talentTeamRepository.findById(id).get();
+    }
 }
