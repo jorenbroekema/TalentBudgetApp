@@ -6,6 +6,7 @@ import com.nionios.trial.controller.TalentService;
 import com.nionios.trial.controller.TalentUserService;
 import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
+import com.nionios.trial.domain.TalentManager;
 import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,32 @@ public class TalentManagerEndpoint {
 
     @Autowired
     private TalentUserService talentUserService;
+    
+    //// Talent manager CR(U)D http requests:
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addTalentManager(TalentManager talentManager){
+        TalentManager result = talentManagerService.addTalentManager(talentManager);
+        return Response.accepted(result).build();
+    }
+
+    @DELETE
+    @Path(value = "{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeTalentManager(@PathParam("id") Long id){
+        talentManagerService.removeTalentManager(id);
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Path(value = "{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findTalentManager(@PathParam("id") Long id){
+        System.out.println(id);
+        TalentManager result = talentManagerService.displayTalentManager(id);
+        return Response.ok(result).build();
+    }
 
     //// Talent http requests
     @POST
@@ -35,15 +62,18 @@ public class TalentManagerEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addTalent(Talent talent){
+    	System.out.println(talent.getId());
         Talent result = talentManagerService.addTalent(talent);
+        System.out.println(result.getId());
+        result.setId(talent.getId());
         return Response.accepted(result).build();
     }
 
     @DELETE
-    @Path(value = "{talent}")
+    @Path(value = "/talent/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeTalent(Talent talent){
-        talentManagerService.removeTalent(talent.getId());
+    public Response removeTalent(@PathParam("id") Long id){
+        talentManagerService.removeTalent(id);
         return Response.noContent().build();
     }
 

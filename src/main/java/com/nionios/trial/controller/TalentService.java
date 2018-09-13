@@ -21,11 +21,4 @@ public class TalentService {
         return talentRepository.findById(id).get().getExpenditures();
     }
 
-
-
-
-
-
-
-
 }

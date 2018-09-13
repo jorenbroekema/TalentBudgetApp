@@ -1,6 +1,7 @@
 package com.nionios.trial.controller;
 
 import com.nionios.trial.domain.Talent;
+import com.nionios.trial.domain.TalentManager;
 import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,11 +30,16 @@ public class TalentManagerService {
     }
 
     public Talent addTalent(Talent talent){ return talentRepository.save(talent); }
+    
+   /* public Talent changeTalent(Talent talent, Long newId) {
+    	talentRepository.
+    }*/
 
     public void removeTalent(long number){
         Optional<Talent> t = talentRepository.findById(number);
         System.out.println(t);
-        talentRepository.delete(t.get());
+        if (t.isPresent())
+        	talentRepository.delete(t.get());
     }
 
 
@@ -47,5 +53,19 @@ public class TalentManagerService {
 
     public void disapproveExpenditure(Long id){
         expenditureRepository.findById(id).get().setState(3);
+    }
+
+
+    public TalentManager displayTalentManager(Long id){
+        return talentManagerRepository.findById(id).get();
+    }
+    public TalentManager addTalentManager(TalentManager manager) { 
+    	return talentManagerRepository.save(manager); 
+    }
+    public void removeTalentManager(long id) {
+    	Optional<TalentManager> m = talentManagerRepository.findById(id);
+    	System.out.println(m);
+    	if (m.isPresent())
+    		talentManagerRepository.delete(m.get());
     }
 }
