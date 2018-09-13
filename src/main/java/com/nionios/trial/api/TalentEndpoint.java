@@ -26,16 +26,19 @@ public class TalentEndpoint {
     @Autowired
     private TalentService talentService;
 
-    //@Autowired
-    //private ExpenditureService expenditureService;
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response displayTalent(@PathParam("id") Long id) {
+        Talent talent = talentService.displayTalent(id);
+        return Response.ok(talent).build();
+    }
 
     @GET
     @Path("/{id}/expenditures")
     @Produces(MediaType.APPLICATION_JSON)
     public Response displayAllExpenditures(@PathParam("id") Long id) {
         Iterable<Expenditure> expenditures = talentService.displayAllExpenditures(id);
-        //return "Hello world";
-        //return Response.ok("expenditures").build();
         return Response.ok(expenditures).build();
     }
 
