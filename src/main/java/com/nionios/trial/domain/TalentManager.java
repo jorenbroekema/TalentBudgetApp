@@ -12,7 +12,7 @@ public class TalentManager {
     private String name;
 
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<TalentTeam> talentTeams = new ArrayList<>();
 
 

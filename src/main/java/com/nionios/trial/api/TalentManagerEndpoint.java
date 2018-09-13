@@ -3,6 +3,7 @@ package com.nionios.trial.api;
 
 import com.nionios.trial.controller.TalentManagerService;
 import com.nionios.trial.controller.TalentService;
+import com.nionios.trial.controller.TalentTeamService;
 import com.nionios.trial.controller.TalentUserService;
 import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
@@ -29,6 +30,10 @@ public class TalentManagerEndpoint {
 
     @Autowired
     private TalentUserService talentUserService;
+
+    @Autowired
+    private TalentTeamService talentTeamService;
+
     
     //// Talent manager CR(U)D http requests:
     @POST
@@ -40,7 +45,7 @@ public class TalentManagerEndpoint {
     }
 
     @DELETE
-    @Path(value = "{id}")
+    @Path(value = "/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeTalentManager(@PathParam("id") Long id){
         talentManagerService.removeTalentManager(id);
@@ -48,24 +53,20 @@ public class TalentManagerEndpoint {
     }
 
     @GET
-    @Path(value = "{id}")
+    @Path(value = "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTalentManager(@PathParam("id") Long id){
-        System.out.println(id);
         TalentManager result = talentManagerService.displayTalentManager(id);
         return Response.ok(result).build();
     }
 
     //// Talent http requests
     @POST
-    @Path(value = "{talent}")
+    @Path(value = "/talent")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addTalent(Talent talent){
-    	System.out.println(talent.getId());
         Talent result = talentManagerService.addTalent(talent);
-        System.out.println(result.getId());
-        result.setId(talent.getId());
         return Response.accepted(result).build();
     }
 
@@ -81,14 +82,13 @@ public class TalentManagerEndpoint {
     @Path(value = "/talent/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTalent(@PathParam("id") Long id){
-        System.out.println(id);
         Talent result = talentService.displayTalent(id);
         return Response.ok(result).build();
     }
 
     //// Team http requests
-    /*@POST
-    @Path(value = "{team}")
+    @POST
+    @Path(value = "/team")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addTeam(TalentTeam team) {
@@ -96,7 +96,21 @@ public class TalentManagerEndpoint {
         return Response.accepted(result).build();
     }
 
+    @DELETE
+    @Path(value = "/team/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeTeam(@PathParam("id") Long id){
+        talentManagerService.removeTalentTeam(id);
+        return Response.noContent().build();
+    }
 
-*/
+    @GET
+    @Path(value = "/team/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findTeam(@PathParam("id") Long id){
+        TalentTeam result = talentTeamService.displayTeam(id);
+        return Response.ok(result).build();
+    }
+
 
 }

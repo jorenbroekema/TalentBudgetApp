@@ -47,6 +47,13 @@ public class TalentManagerService {
         return talentTeamRepository.save(tt);
     }
 
+    public void removeTalentTeam(long number){
+        Optional<TalentTeam> tt = talentTeamRepository.findById(number);
+        System.out.println(tt);
+        if (tt.isPresent())
+            talentTeamRepository.delete(tt.get());
+    }
+
     public void approveExpenditure(Long id){
         expenditureRepository.findById(id).get().setState(1);
     }
@@ -59,9 +66,11 @@ public class TalentManagerService {
     public TalentManager displayTalentManager(Long id){
         return talentManagerRepository.findById(id).get();
     }
-    public TalentManager addTalentManager(TalentManager manager) { 
+
+    public TalentManager addTalentManager(TalentManager manager) {
     	return talentManagerRepository.save(manager); 
     }
+
     public void removeTalentManager(long id) {
     	Optional<TalentManager> m = talentManagerRepository.findById(id);
     	System.out.println(m);
