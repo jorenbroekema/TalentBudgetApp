@@ -18,7 +18,7 @@ public class TalentUserService {
     @Autowired
     TalentRepository talentRepository;
 
-    public void addExpenditure(Expenditure expenditure){
+    public void saveExpenditure(Expenditure expenditure){
         expenditureRepository.save(expenditure);
     }
 

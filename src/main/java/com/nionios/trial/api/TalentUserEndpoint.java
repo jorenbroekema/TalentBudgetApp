@@ -21,11 +21,11 @@ public class TalentUserEndpoint {
     private ExpenditureService expenditureService;
 
     @POST
-    @Path("/add-expenditure")
+    @Path("/add/expenditure")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response addExpenditure(Expenditure expenditure) {
-        talentUserService.addExpenditure(expenditure);
+        talentUserService.saveExpenditure(expenditure);
         return Response.accepted().build();
     }
 
@@ -37,12 +37,4 @@ public class TalentUserEndpoint {
         talentUserService.deleteExpenditure(expenditure);
         return Response.noContent().build();
     }
-/*
-    @PUT
-    @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updatePerson(Person person) {
-        Person result = personService.update(person);
-        return Response.noContent().build();
-    }*/
 }
