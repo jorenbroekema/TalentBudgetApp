@@ -22,7 +22,7 @@ public class TalentUserService {
         expenditureRepository.save(expenditure);
     }
 
-    public void removeExpenditure(Expenditure expenditure){
+    public void deleteExpenditure(Expenditure expenditure){
         expenditureRepository.delete(expenditure);
     }
 

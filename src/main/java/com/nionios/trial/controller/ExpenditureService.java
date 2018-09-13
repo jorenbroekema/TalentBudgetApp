@@ -32,7 +32,7 @@ public class ExpenditureService {
         expenditureRepository.findById(id).get().setState(4);
     }
 
-    public Expenditure displayExpenditure(Long id){
+    public Expenditure findExpenditure(Long id){
         return expenditureRepository.findById(id).get();
     }
 

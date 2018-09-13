@@ -42,28 +42,6 @@ public class TalentEndpoint {
         return Response.ok(expenditures).build();
     }
 
-    /*@POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response postPerson(Person person) {
-        Person result = personService.save(person);
-        return Response.accepted(result.getId()).build();
-    }
 
-    @DELETE
-    @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response deletePerson(Person person, @PathParam("id") Long id) {
-        personService.deletePerson(id);
-        return Response.noContent().build();
-    }
-
-    @PUT
-    @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updatePerson(Person person) {
-        Person result = personService.update(person);
-        return Response.noContent().build();
-    }*/
 
 }
