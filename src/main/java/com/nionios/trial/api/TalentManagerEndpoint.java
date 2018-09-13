@@ -6,6 +6,7 @@ import com.nionios.trial.controller.TalentService;
 import com.nionios.trial.controller.TalentUserService;
 import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
+import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +29,9 @@ public class TalentManagerEndpoint {
     @Autowired
     private TalentUserService talentUserService;
 
-
-
+    //// Talent http requests
     @POST
+    @Path(value = "{talent}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addTalent(Talent talent){
@@ -39,6 +40,7 @@ public class TalentManagerEndpoint {
     }
 
     @DELETE
+    @Path(value = "{talent}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeTalent(Talent talent){
         talentManagerService.removeTalent(talent.getId());
@@ -46,12 +48,25 @@ public class TalentManagerEndpoint {
     }
 
     @GET
-    @Path(value = "{id}")
+    @Path(value = "/talent/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findTalent(@PathParam("id") long id){
+    public Response findTalent(@PathParam("id") Long id){
         System.out.println(id);
         Talent result = talentService.displayTalent(id);
         return Response.ok(result).build();
     }
+
+    //// Team http requests
+    /*@POST
+    @Path(value = "{team}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addTeam(TalentTeam team) {
+        TalentTeam result = talentManagerService.addTalentTeam(team);
+        return Response.accepted(result).build();
+    }
+
+
+*/
 
 }
