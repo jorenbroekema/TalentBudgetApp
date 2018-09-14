@@ -67,6 +67,8 @@ public class TalentManagerService {
         return talentManagerRepository.findById(id).get();
     }
 
+    public Iterable<TalentManager> displayAllTalentManagers (){Iterable<TalentManager> result = talentManagerRepository.findAll(); return result;}
+
     public TalentManager addTalentManager(TalentManager manager) {
     	return talentManagerRepository.save(manager); 
     }

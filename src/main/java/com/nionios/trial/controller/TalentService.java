@@ -13,12 +13,10 @@ public class TalentService {
     @Autowired
     private TalentRepository talentRepository;
 
-    public Talent displayTalent(Long id){
-        return talentRepository.findById(id).get();
-    }
+    public Talent displayTalent(Long id){ return talentRepository.findById(id).get(); }
 
-    public Iterable<Expenditure> displayAllExpenditures(Long id){
-        return talentRepository.findById(id).get().getExpenditures();
-    }
+    public Iterable<Talent> displayAllTalents (){Iterable<Talent> result = talentRepository.findAll(); return result;}
+
+    public Iterable<Expenditure> displayAllExpenditures(Long id){ return talentRepository.findById(id).get().getExpenditures(); }
 
 }
