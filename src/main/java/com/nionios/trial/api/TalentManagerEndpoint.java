@@ -1,10 +1,8 @@
 
 package com.nionios.trial.api;
 
-import com.nionios.trial.controller.TalentManagerService;
-import com.nionios.trial.controller.TalentService;
-import com.nionios.trial.controller.TalentTeamService;
-import com.nionios.trial.controller.TalentUserService;
+import com.nionios.trial.controller.*;
+import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
 import com.nionios.trial.domain.TalentManager;
 import com.nionios.trial.domain.TalentTeam;
@@ -31,7 +29,10 @@ public class TalentManagerEndpoint {
     @Autowired
     private TalentTeamService talentTeamService;
 
-    
+    @Autowired
+    private ExpenditureService expenditureService;
+
+
     //// Talent manager CR(U)D http requests:
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -138,8 +139,13 @@ public class TalentManagerEndpoint {
 
     // change state
 
-
-
+    @PATCH
+    @Path("/changestate/{id}/state/{state}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateState(@PathParam("id") Long id, @PathParam("state") int state) {
+        expenditureService.changeState(id, state);
+        return Response.ok(" state updated").build();
+    }
 
 
 
