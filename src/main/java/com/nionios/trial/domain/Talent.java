@@ -54,6 +54,7 @@ public class Talent {
 
     public void setExpenditures(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
+        System.out.println(expenditures);
     }
 
     public TalentTeam getTalentTeam() {
