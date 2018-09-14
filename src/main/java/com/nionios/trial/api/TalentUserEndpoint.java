@@ -25,8 +25,8 @@ public class TalentUserEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response addExpenditure(Expenditure expenditure) {
-        talentUserService.saveExpenditure(expenditure);
-        return Response.accepted().build();
+        Expenditure result = talentUserService.saveExpenditure(expenditure);
+        return Response.accepted(result.getId()).build();
     }
 
     @DELETE
