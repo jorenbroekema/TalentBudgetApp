@@ -14,11 +14,8 @@ public class ExpenditureService {
     // 4 = CLOSED
     @Autowired
     private ExpenditureRepository expenditureRepository;
-
-    public void approve(Long id){
-        // changing the state to 'Approved'
-        expenditureRepository.findById(id).get().setState(1);
-    }
+/*
+    public void approve(Long id){expenditureRepository.findById(id).get().setState(1); }
 
     public void inprogress(Long id){
         expenditureRepository.findById(id).get().setState(2);
@@ -31,13 +28,15 @@ public class ExpenditureService {
     public void closed(Long id){
         expenditureRepository.findById(id).get().setState(4);
     }
+ */
+
+    public void changeState (Long id, int state) {expenditureRepository.findById(id).get().setState(state);}
 
     public Expenditure findExpenditure(Long id){
         return expenditureRepository.findById(id).get();
     }
 
-    public Iterable<Expenditure> findAllExpenditures() {
-        Iterable<Expenditure> result = expenditureRepository.findAll();
-        return result;
-    }
+    public Iterable<Expenditure> findAllExpenditures() { Iterable<Expenditure> result = expenditureRepository.findAll(); return result;}
+
+    public Iterable<Expenditure> findInProgress(int state) {return expenditureRepository.findByStateEquals(2);}
 }

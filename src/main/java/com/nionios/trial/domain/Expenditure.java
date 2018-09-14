@@ -72,6 +72,7 @@ public class Expenditure {
         return state;
     }
 
+
     public void setState(int state) {
         this.state = state;
     }

@@ -1,13 +1,7 @@
 package com.nionios.trial.api;
 
-import javax.print.attribute.standard.Media;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,8 +23,14 @@ public class ExpenditureEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response listExpenditures() {
         Iterable<Expenditure> expenditures = expenditureService.findAllExpenditures();
-        //return "Hello world";
-        //return Response.ok("expenditures").build();
+        return Response.ok(expenditures).build();
+    }
+
+    @GET
+    @Path(value = "/inprogress")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response expendituresInProgress() {
+        Iterable<Expenditure> expenditures = expenditureService.findInProgress(2);
         return Response.ok(expenditures).build();
     }
 
