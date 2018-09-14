@@ -48,13 +48,10 @@ public class Talent {
         this.budget = budget;
     }
 
-    public List<Expenditure> getExpenditures() {
-        return expenditures;
-    }
+    public List<Expenditure> getExpenditures() { return expenditures; }
 
     public void setExpenditures(List<Expenditure> expenditures) {
         this.expenditures = expenditures;
-        System.out.println(expenditures);
     }
 
     public TalentTeam getTalentTeam() {

@@ -14,9 +14,7 @@ public class TalentTeamService {
     @Autowired
     private TalentTeamRepository talentTeamRepository;
 
-    public Iterable<TalentTeam> displayAllTeams(){
-        return talentTeamRepository.findAll();
-    }
+    public Iterable<TalentTeam> displayAllTeams(){ return talentTeamRepository.findAll(); }
 
     public Iterable<Talent> displayAllTalents(){
         return talentRepository.findAll();

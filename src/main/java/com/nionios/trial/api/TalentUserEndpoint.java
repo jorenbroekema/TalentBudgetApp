@@ -32,7 +32,7 @@ public class TalentUserEndpoint {
     private TalentService talentService;
 
     @POST
-    @Path("/{id}/add/expenditure")
+    @Path("/{id}/expenditure")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response addExpenditure(Expenditure expenditure, @PathParam("id") Long id) {
@@ -46,13 +46,14 @@ public class TalentUserEndpoint {
     }
 
     @DELETE
-    @Path("/{id}/delete/expenditure/{ex_id}")
+    @Path("/{id}/expenditure/{expenditure_id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteExpenditure(@PathParam("id") Long id, @PathParam("ex_id") Long ex_id) {
+    public Response deleteExpenditure(@PathParam("id") Long id, @PathParam("expenditure_id") Long ex_id) {
         Talent talent = talentService.displayTalent(id);
         Expenditure expenditure = expenditureService.findExpenditure(ex_id);
         List<Expenditure> talentExpenditures = talent.getExpenditures();
 
+        // Finding the right expenditure in the list to delete
         Expenditure target = new Expenditure();
         for (Expenditure e : talentExpenditures) {
             if (e.getId() == ex_id){
