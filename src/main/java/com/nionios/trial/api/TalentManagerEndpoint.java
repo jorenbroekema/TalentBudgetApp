@@ -57,6 +57,15 @@ public class TalentManagerEndpoint {
         return Response.ok(result).build();
     }
 
+    @GET
+    @Path(value = "/talentmanager/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response displayAllTalentManagers(){
+        Iterable<TalentManager> talentmanagers = talentManagerService.displayAllTalentManagers();
+        return Response.ok(talentmanagers).build();
+
+    }
+
     //// Talent http requests
     @POST
     @Path(value = "/talent")
@@ -83,6 +92,15 @@ public class TalentManagerEndpoint {
         return Response.ok(result).build();
     }
 
+    @GET
+    @Path(value = "/talent/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response displayAllTalents(){
+        Iterable<Talent> talents = talentService.displayAllTalents();
+        return Response.ok(talents).build();
+
+    }
+
     //// Team http requests
     @POST
     @Path(value = "/team")
@@ -107,6 +125,15 @@ public class TalentManagerEndpoint {
     public Response findTeam(@PathParam("id") Long id){
         TalentTeam result = talentTeamService.displayTeam(id);
         return Response.ok(result).build();
+    }
+
+    @GET
+    @Path(value = "/team/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAllTeams(){
+        Iterable<TalentTeam> teams = talentTeamService.displayAllTeams();
+        return Response.ok(teams).build();
+
     }
 
 
