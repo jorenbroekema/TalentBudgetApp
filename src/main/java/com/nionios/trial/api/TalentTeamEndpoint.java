@@ -1,66 +1,56 @@
 package com.nionios.trial.api;
 
 import com.nionios.trial.controller.*;
-import com.nionios.trial.domain.Expenditure;
-import com.nionios.trial.domain.Talent;
+import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 
 @Path("talentteam")
 @Component
 public class TalentTeamEndpoint {
 
     @Autowired
-    private TalentTeamService talentTeamService;
-
-    @Autowired
-    private TalentService talentService;
-
-    @Autowired
     private TalentManagerService talentManagerService;
 
     @Autowired
-    private ExpenditureService expenditureService;
+    private TalentTeamService talentTeamService;
 
-    @Autowired
-    private TalentUserService talentUserService;
+
+    //// Team http requests
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addTeam(TalentTeam team) {
+        TalentTeam result = talentManagerService.addTalentTeam(team);
+        return Response.accepted(result).build();
+    }
+
+    @DELETE
+    @Path(value = "/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeTeam(@PathParam("id") Long id){
+        talentManagerService.removeTalentTeam(id);
+        return Response.noContent().build();
+    }
 
     @GET
+    @Path(value = "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listGroep(){
-        Expenditure bookJava = new Expenditure();
-        bookJava.setName("Java Book");
-        bookJava.setDescription("This is a book for learning Java");
-        talentUserService.saveExpenditure(bookJava);
+    public Response findTeam(@PathParam("id") Long id){
+        TalentTeam result = talentTeamService.displayTeam(id);
+        return Response.ok(result).build();
+    }
 
-        Expenditure course2 = new Expenditure();
-        course2.setName("Java course");
-        course2.setDescription("This is a course to learn Java");
-        talentUserService.saveExpenditure(course2);
+    @GET
+    @Path(value = "/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAllTeams(){
+        Iterable<TalentTeam> teams = talentTeamService.displayAllTeams();
+        return Response.ok(teams).build();
 
-        ArrayList<Expenditure> expenditures = new ArrayList<>();
-        expenditures.add(bookJava);
-        expenditures.add(course2);
-
-      //  TalentTeam tt = new TalentTeam();
-      //  tt.setTeamname("TEP12");
-
-        Talent talent = new Talent();
-        talent.setName("Frits");
-        talent.setBudget(1500);
-        //talent.setTalentTeam(tt);
-        talent.setExpenditures(expenditures);
-
-        talentManagerService.addTalent(talent);
-
-
-        return Response.ok("talentTeams").build();
     }
 }

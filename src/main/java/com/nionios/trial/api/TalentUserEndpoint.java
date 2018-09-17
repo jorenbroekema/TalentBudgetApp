@@ -6,7 +6,6 @@ import com.nionios.trial.controller.TalentService;
 import com.nionios.trial.controller.TalentUserService;
 import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
-import com.nionios.trial.domain.TalentManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

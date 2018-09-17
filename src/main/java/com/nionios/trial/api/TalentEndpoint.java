@@ -1,17 +1,10 @@
 package com.nionios.trial.api;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.nionios.trial.controller.ExpenditureService;
+import com.nionios.trial.controller.TalentManagerService;
 import com.nionios.trial.domain.Expenditure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,13 +19,43 @@ public class TalentEndpoint {
     @Autowired
     private TalentService talentService;
 
-    @GET
-    @Path("/{id}")
+   @Autowired
+   private TalentManagerService talentManagerService;
+
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response displayTalent(@PathParam("id") Long id) {
-        Talent talent = talentService.displayTalent(id);
-        return Response.ok(talent).build();
+    public Response addTalent(Talent talent){
+        Talent result = talentManagerService.addTalent(talent);
+        return Response.accepted(result).build();
     }
+
+    @DELETE
+    @Path(value = "/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeTalent(@PathParam("id") Long id){
+        talentManagerService.removeTalent(id);
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Path(value = "/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findTalent(@PathParam("id") Long id){
+        Talent result = talentService.displayTalent(id);
+        return Response.ok(result).build();
+    }
+
+    @GET
+    @Path(value = "/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response displayAllTalents(){
+        Iterable<Talent> talents = talentService.displayAllTalents();
+        return Response.ok(talents).build();
+
+    }
+
 
     @GET
     @Path("/{id}/expenditures")
@@ -40,8 +63,7 @@ public class TalentEndpoint {
     public Response displayAllExpenditures(@PathParam("id") Long id) {
         Iterable<Expenditure> expenditures = talentService.displayAllExpenditures(id);
         return Response.ok(expenditures).build();
-    }
-
+        }
 
 
 }

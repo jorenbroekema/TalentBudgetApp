@@ -1,8 +1,6 @@
 package com.nionios.trial.api;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -33,6 +31,18 @@ public class ExpenditureEndpoint {
         Iterable<Expenditure> expenditures = expenditureService.findInProgress(2);
         return Response.ok(expenditures).build();
     }
+
+
+    // change state
+    @PATCH
+    @Path("/changestate/{id}/state/{state}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateState(@PathParam("id") Long id, @PathParam("state") int state) {
+        expenditureService.changeState(id, state);
+        return Response.ok(" Succesfully updated").build();
+    }
+
+
 
     /*@POST
     @Consumes(MediaType.APPLICATION_JSON)
