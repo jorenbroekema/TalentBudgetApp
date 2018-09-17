@@ -1,14 +1,11 @@
 package com.nionios.trial.api;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import com.nionios.trial.controller.TalentManagerService;
 import com.nionios.trial.domain.Expenditure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.nionios.trial.domain.Talent;
 import com.nionios.trial.controller.TalentService;
 
@@ -22,7 +19,6 @@ public class TalentEndpoint {
    @Autowired
    private TalentManagerService talentManagerService;
 
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -32,7 +28,7 @@ public class TalentEndpoint {
     }
 
     @DELETE
-    @Path(value = "/{id}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeTalent(@PathParam("id") Long id){
         talentManagerService.removeTalent(id);
@@ -40,7 +36,7 @@ public class TalentEndpoint {
     }
 
     @GET
-    @Path(value = "/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTalent(@PathParam("id") Long id){
         Talent result = talentService.displayTalent(id);
@@ -48,7 +44,7 @@ public class TalentEndpoint {
     }
 
     @GET
-    @Path(value = "/all")
+    @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response displayAllTalents(){
         Iterable<Talent> talents = talentService.displayAllTalents();
@@ -56,14 +52,11 @@ public class TalentEndpoint {
 
     }
 
-
     @GET
     @Path("/{id}/expenditures")
     @Produces(MediaType.APPLICATION_JSON)
     public Response displayAllExpenditures(@PathParam("id") Long id) {
         Iterable<Expenditure> expenditures = talentService.displayAllExpenditures(id);
         return Response.ok(expenditures).build();
-        }
-
-
+    }
 }

@@ -1,5 +1,4 @@
 package com.nionios.trial.api;
-
 import com.nionios.trial.controller.ExpenditureService;
 import com.nionios.trial.controller.TalentManagerService;
 import com.nionios.trial.controller.TalentService;
@@ -8,7 +7,6 @@ import com.nionios.trial.domain.Expenditure;
 import com.nionios.trial.domain.Talent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

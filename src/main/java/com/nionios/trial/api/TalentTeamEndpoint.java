@@ -1,10 +1,8 @@
 package com.nionios.trial.api;
-
 import com.nionios.trial.controller.*;
 import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,8 +17,6 @@ public class TalentTeamEndpoint {
     @Autowired
     private TalentTeamService talentTeamService;
 
-
-    //// Team http requests
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -30,7 +26,7 @@ public class TalentTeamEndpoint {
     }
 
     @DELETE
-    @Path(value = "/{id}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeTeam(@PathParam("id") Long id){
         talentManagerService.removeTalentTeam(id);
@@ -38,7 +34,7 @@ public class TalentTeamEndpoint {
     }
 
     @GET
-    @Path(value = "/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTeam(@PathParam("id") Long id){
         TalentTeam result = talentTeamService.displayTeam(id);
@@ -46,7 +42,7 @@ public class TalentTeamEndpoint {
     }
 
     @GET
-    @Path(value = "/all")
+    @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllTeams(){
         Iterable<TalentTeam> teams = talentTeamService.displayAllTeams();

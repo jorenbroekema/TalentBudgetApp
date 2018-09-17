@@ -1,6 +1,4 @@
-
 package com.nionios.trial.api;
-
 import com.nionios.trial.controller.*;
 import com.nionios.trial.domain.TalentManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ public class TalentManagerEndpoint {
     @Autowired
     private TalentManagerService talentManagerService;
 
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +23,7 @@ public class TalentManagerEndpoint {
     }
 
     @DELETE
-    @Path(value = "/{id}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeTalentManager(@PathParam("id") Long id){
         talentManagerService.removeTalentManager(id);
@@ -34,7 +31,7 @@ public class TalentManagerEndpoint {
     }
 
     @GET
-    @Path(value = "/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTalentManager(@PathParam("id") Long id){
         TalentManager result = talentManagerService.displayTalentManager(id);
@@ -42,13 +39,11 @@ public class TalentManagerEndpoint {
     }
 
     @GET
-    @Path(value = "/all")
+    @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response displayAllTalentManagers(){
         Iterable<TalentManager> talentmanagers = talentManagerService.displayAllTalentManagers();
         return Response.ok(talentmanagers).build();
 
     }
-
-
 }
