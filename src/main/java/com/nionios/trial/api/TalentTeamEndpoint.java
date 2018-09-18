@@ -1,5 +1,6 @@
 package com.nionios.trial.api;
 import com.nionios.trial.controller.*;
+import com.nionios.trial.domain.Talent;
 import com.nionios.trial.domain.TalentTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,9 @@ public class TalentTeamEndpoint {
 
     @Autowired
     private TalentTeamService talentTeamService;
+
+    @Autowired
+    private TalentService talentService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -37,7 +41,7 @@ public class TalentTeamEndpoint {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTeam(@PathParam("id") Long id){
-        TalentTeam result = talentTeamService.displayTeam(id);
+        Iterable<Talent> result = talentService.displayAllTeamMembers(id);
         return Response.ok(result).build();
     }
 
