@@ -25,23 +25,13 @@ public class TalentManagerService {
     @Autowired
     ExpenditureRepository expenditureRepository;
 
-    public Iterable<TalentTeam> viewOwnTeams(Long id){
-        return talentManagerRepository.findById(id).get().getTalentTeams();
-    }
-
     public Talent addTalent(Talent talent){ return talentRepository.save(talent); }
-    
-   /* public Talent changeTalent(Talent talent, Long newId) {
-    	talentRepository.
-    }*/
 
-    public void removeTalent(long number){
-        Optional<Talent> t = talentRepository.findById(number);
+    public void removeTalent(long number){Optional<Talent> t = talentRepository.findById(number);
         System.out.println(t);
         if (t.isPresent())
         	talentRepository.delete(t.get());
     }
-
 
     public TalentTeam addTalentTeam(TalentTeam tt){
         return talentTeamRepository.save(tt);
@@ -53,15 +43,6 @@ public class TalentManagerService {
         if (tt.isPresent())
             talentTeamRepository.delete(tt.get());
     }
-
-    public void approveExpenditure(Long id){
-        expenditureRepository.findById(id).get().setState(1);
-    }
-
-    public void disapproveExpenditure(Long id){
-        expenditureRepository.findById(id).get().setState(3);
-    }
-
 
     public TalentManager displayTalentManager(Long id){
         return talentManagerRepository.findById(id).get();
@@ -79,4 +60,14 @@ public class TalentManagerService {
     	if (m.isPresent())
     		talentManagerRepository.delete(m.get());
     }
+
+    public void approveExpenditure(Long id){
+        expenditureRepository.findById(id).get().setState(1);
+    }
+
+    public void disapproveExpenditure(Long id){
+        expenditureRepository.findById(id).get().setState(3);
+    }
+
+    public Iterable<TalentTeam> viewOwnTeams(Long id){ return talentManagerRepository.findById(id).get().getTalentTeams(); }
 }
