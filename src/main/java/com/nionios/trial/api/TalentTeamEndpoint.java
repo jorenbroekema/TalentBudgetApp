@@ -34,7 +34,7 @@ public class TalentTeamEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeTeam(@PathParam("id") Long id){
         talentManagerService.removeTalentTeam(id);
-        return Response.noContent().build();
+        return Response.ok("Succesfully deleted").build();
     }
 
     @GET
