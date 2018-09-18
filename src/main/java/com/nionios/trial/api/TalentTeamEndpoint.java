@@ -41,10 +41,18 @@ public class TalentTeamEndpoint {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findTeam(@PathParam("id") Long id){
-        Iterable<Talent> result = talentService.displayAllTeamMembers(id);
+        TalentTeam result = talentTeamService.displayTeam(id);
         return Response.ok(result).build();
     }
 
+    @GET
+    @Path("/{id}/teammembers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findTeamMembers(@PathParam("id") Long id){
+        Iterable<Talent> result = talentService.displayAllTeamMembers(id);
+        return Response.ok(result).build();
+    }
+    
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)

@@ -11,5 +11,5 @@ import java.util.List;
 @Component
 public interface TalentRepository extends CrudRepository<Talent, Long> {
     @Query("SELECT t FROM Talent t where t.talentTeam.id = :id")
-    List<Talent> findAllByTalentTeam(@Param("id") Long id);
+    List<Talent> findAllByTeamId(@Param("id") Long id);
 }
